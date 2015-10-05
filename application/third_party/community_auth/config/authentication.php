@@ -28,8 +28,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $config['levels_and_roles'] = array(
-	'1' => 'customer',
-	'6' => 'manager',
+	'4' => 'sales',
+	'5' => 'inventory',
+	'6' => 'finance_and_accounting',
+	'7' => 'manager',
+	'8' => 'businessowner',
 	'9' => 'admin'
 );
 
@@ -42,7 +45,8 @@ $config['levels_and_roles'] = array(
 */
 
 $config['groups'] = array(
-	'employees' => 'manager,admin'
+	'employee' => 'manager,finance_and_accounting,inventory',
+	'superuser' => 'admin,businessowner'
 );
 
 /*
@@ -55,7 +59,7 @@ $config['groups'] = array(
 | 
 */
 
-$config['max_allowed_attempts'] = 5;
+$config['max_allowed_attempts'] = 2;
 
 /*
 | -----------------------------------------------------------------

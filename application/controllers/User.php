@@ -137,14 +137,14 @@ class User extends MY_Controller
      *   - Must not have any space, tab, or other whitespace characters
      *   - No backslash, apostrophe or quote chars are allowed
      */
-    public function create_user()
+    public function create()
     {
         // Customize this array for your user
         $user_data = array(
-            'user_name'     => 'eko',
+            'user_name'     => 'wulan',
             'user_pass'     => 'Testing123',
-            'user_email'    => 'eko@ronthkard.com',
-            'user_level'    => '9', // 9 if you want to login @ examples/index.
+            'user_email'    => 'wulan@ronthkard.com',
+            'user_level'    => '7', // 9 if you want to login @ examples/index.
         );
 
         $this->load->library('form_validation');
@@ -170,7 +170,7 @@ class User extends MY_Controller
 			array(
 				'field' => 'user_level',
 				'label' => 'user_level',
-				'rules' => 'required|integer|in_list[1,6,9]'
+				'rules' => 'required|integer|in_list[5,6,7,8,9]'
 			)
 		);
 
@@ -225,12 +225,9 @@ class User extends MY_Controller
         }
 
         $this->setup_login_form();
-
-        $html = $this->load->view('examples/page_header', '', TRUE);
-        $html .= $this->load->view('examples/login_form', '', TRUE);
-        $html .= $this->load->view('examples/page_footer', '', TRUE);
-
-        echo $html;
+		
+		$data['page'] = 'auth/login';
+		$this->load->view('template/auth/main',$data);
     }
 
     // --------------------------------------------------------------

@@ -60,7 +60,7 @@ $autoload['packages'] = array(APPPATH . 'third_party/community_auth/');
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('database','session','tokens','Authentication');
+$autoload['libraries'] = array('database','session','tokens','Authentication','grocery_CRUD');
 
 
 /*
