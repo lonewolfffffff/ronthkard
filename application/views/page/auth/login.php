@@ -44,7 +44,7 @@ if( ! isset( $on_hold_message ) )
 	echo form_open( $login_url, array( 'class' => 'form-signin' ) ); 
 ?>
 
-		<img class="img-responsive" src="http://localhost/php/tino/ronthkard/assets/img/logo-ronthkard.png" alt="Ronthkard" title="logo" id="logo">
+		<img class="img-responsive" src="<?php echo base_url('assets/img/logo-ronthkard.png'); ?>" alt="Ronthkard" title="logo" id="logo">
 		<h2 class="form-signin-heading">&nbsp;</h2>
 		<label class="sr-only" for="inputEmail">User</label>
 		<input type="text" autofocus="" required="" placeholder="User" class="form-control" id="inputUser" name="login_string" value="" autocomplete="off">
