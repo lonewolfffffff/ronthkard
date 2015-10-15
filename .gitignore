@@ -5,3 +5,15 @@
 */cache/!index.html
 */cache/!.htaccess
 /nbproject/private/
+assets/.DS_Store
+assets/bootstrap/.DS_Store
+assets/bower_components/.DS_Store
+assets/bower_components/eonasdan-bootstrap-datetimepicker/.DS_Store
+assets/bower_components/eonasdan-bootstrap-datetimepicker/build/.DS_Store
+assets/bower_components/eonasdan-bootstrap-datetimepicker/build/css/.DS_Store
+assets/css/.DS_Store
+assets/img/.DS_Store
+assets/js/.DS_Store
+assets/js/jquery-ui/.DS_Store
+assets/select2/.DS_Store
+web.config

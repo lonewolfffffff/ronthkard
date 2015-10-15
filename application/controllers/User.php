@@ -23,28 +23,29 @@ class User extends MY_Controller
         //$this->force_ssl();
     }
 
-    // -----------------------------------------------------------------------
+	// -----------------------------------------------------------------------
 
-    /**
-     * Demonstrate being redirected to login.
-     * If you are logged in and request this method,
-     * you'll see the message, otherwise you will be
-     * shown the login form. Once login is achieved,
-     * you will be redirected back to this method.
-     */
-    public function index()
-    {
-        if ($this->require_role('admin')) {
+	/**
+	 * Demonstrate being redirected to login.
+	 * If you are logged in and request this method,
+	 * you'll see the message, otherwise you will be
+	 * shown the login form. Once login is achieved,
+	 * you will be redirected back to this method.
+	 */
+	public function index() {
+		/*
+		if ($this->require_role('admin')) {
 
-            echo $this->load->view('examples/page_header', '', TRUE);
+			echo $this->load->view('examples/page_header', '', TRUE);
 
-            echo '<p>You are logged in!</p>';
+			echo '<p>You are logged in!</p>';
 
-            echo $this->load->view('examples/page_footer', '', TRUE);
-        }
-    }
-    
-    // -----------------------------------------------------------------------
+			echo $this->load->view('examples/page_footer', '', TRUE);
+		}
+		*/
+	}
+	
+	// -----------------------------------------------------------------------
 
     /**
      * Demonstrate an optional login.
@@ -141,10 +142,10 @@ class User extends MY_Controller
     {
         // Customize this array for your user
         $user_data = array(
-            'user_name'     => 'wulan',
+            'user_name'     => 'admin',
             'user_pass'     => 'Testing123',
-            'user_email'    => 'wulan@ronthkard.com',
-            'user_level'    => '7', // 9 if you want to login @ examples/index.
+            'user_email'    => 'admin@ronthkard.com',
+            'user_level'    => '9', // 9 if you want to login @ examples/index.
         );
 
         $this->load->library('form_validation');
@@ -218,7 +219,7 @@ class User extends MY_Controller
         {
             show_404();
         }
-
+		
         if( strtolower( $_SERVER['REQUEST_METHOD'] ) == 'post' )
         {
             $this->require_min_level(1);

@@ -59,7 +59,7 @@ $config['groups'] = array(
 | 
 */
 
-$config['max_allowed_attempts'] = 2;
+$config['max_allowed_attempts'] = 5;
 
 /*
 | -----------------------------------------------------------------
