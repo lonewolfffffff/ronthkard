@@ -1,7 +1,12 @@
 <head>
-	<title>Weekend Away - Admin</title>
+	<title>Ronthkard Inti Alkesindo</title>
 	<meta charset="UTF-8">
+	<meta name="description" content="Ronthkard"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="<?php echo base_url("assets/bootstrap/css/bootstrap.min.css"); ?>">
-	<link rel="stylesheet" href="<?php echo base_url("assets/css/admin/signin.css"); ?>">
+	<link rel="stylesheet" href="<?php echo base_url("assets/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"); ?>" />
+	<link rel="stylesheet" href="<?php echo base_url("assets/font-awesome-4.4.0/css/font-awesome.min.css"); ?>" />
+	<link rel="stylesheet" href="<?php echo base_url("assets/js/jquery-ui/jquery-ui.theme.min.css"); ?>">
+	<link rel="stylesheet" href="<?php echo base_url("assets/select2/select2.min.css"); ?>">
+	<link rel="stylesheet" href="<?php echo base_url("assets/css/auth/signin.css"); ?>">
 </head>

@@ -13,15 +13,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @link        http://community-auth.com
  */
 
-class User extends MY_Controller
-{
-    public function __construct()
-    {
-        parent::__construct();
+class User extends MY_Controller {
+	public function __construct() {
+		parent::__construct();
 
-        // Force SSL
-        //$this->force_ssl();
-    }
+		// Force SSL
+		//$this->force_ssl();
+	}
 
     // -----------------------------------------------------------------------
 
@@ -32,17 +30,15 @@ class User extends MY_Controller
      * shown the login form. Once login is achieved,
      * you will be redirected back to this method.
      */
-    public function index()
-    {
-        if ($this->require_role('admin')) {
-
-            echo $this->load->view('examples/page_header', '', TRUE);
-
-            echo '<p>You are logged in!</p>';
-
-            echo $this->load->view('examples/page_footer', '', TRUE);
-        }
-    }
+	public function index() {
+		$this->grocery_crud->set_table('users');
+		$this->grocery_crud->columns('user_name','user_email','user_last_login');
+		$this->grocery_crud->fields('user_name','user_pass','user_email','user_level');
+		$output = $this->grocery_crud->render();
+		$output->page_title = 'User';
+		
+		$this->load->view('template/default/main',$output);
+	}
     
     // -----------------------------------------------------------------------
 
@@ -137,14 +133,14 @@ class User extends MY_Controller
      *   - Must not have any space, tab, or other whitespace characters
      *   - No backslash, apostrophe or quote chars are allowed
      */
-    public function create_user()
+    public function create()
     {
         // Customize this array for your user
         $user_data = array(
-            'user_name'     => 'eko',
+            'user_name'     => 'wulan',
             'user_pass'     => 'Testing123',
-            'user_email'    => 'eko@ronthkard.com',
-            'user_level'    => '9', // 9 if you want to login @ examples/index.
+            'user_email'    => 'wulan@ronthkard.com',
+            'user_level'    => '7', // 9 if you want to login @ examples/index.
         );
 
         $this->load->library('form_validation');
@@ -170,7 +166,7 @@ class User extends MY_Controller
 			array(
 				'field' => 'user_level',
 				'label' => 'user_level',
-				'rules' => 'required|integer|in_list[1,6,9]'
+				'rules' => 'required|integer|in_list[5,6,7,8,9]'
 			)
 		);
 
@@ -225,12 +221,9 @@ class User extends MY_Controller
         }
 
         $this->setup_login_form();
-
-        $html = $this->load->view('examples/page_header', '', TRUE);
-        $html .= $this->load->view('examples/login_form', '', TRUE);
-        $html .= $this->load->view('examples/page_footer', '', TRUE);
-
-        echo $html;
+		
+		$data['page'] = 'auth/login';
+		$this->load->view('template/auth/main',$data);
     }
 
     // --------------------------------------------------------------
