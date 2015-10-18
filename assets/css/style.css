@@ -44,7 +44,7 @@ body {
 	top: 3px;
 }
 
-.flexigrid div.form-div input[type="text"], .flexigrid div.form-div input[type="password"] {height: 40px;}
+.flexigrid div.form-div input[type="text"], .flexigrid div.form-div input[type="password"] {height: 34px;}
 /* end CRUD */
 
 @media (min-width: 768px) {

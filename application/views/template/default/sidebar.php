@@ -31,19 +31,13 @@
 		<a href="<?php echo base_url('product'); ?>"><i class="fa fa-database"></i> Katalog</a>
 		<ul class="nav sub-menu">
 			<li class="">
-				<a href="<?php echo base_url('employee'); ?>"><i class="fa fa-female"></i> Pegawai</a>
-			</li>
-			<li class="">
-				<a href="<?php echo base_url('salesagent'); ?>"><i class="fa fa-male"></i> Agen Penjualan</a>
-			</li>
-			<li class="">
-				<a href="<?php echo base_url('client'); ?>"><i class="fa fa-user-md"></i> Pelanggan</a>
-			</li>
-			<li class="">
 				<a href="<?php echo base_url('hospital'); ?>"><i class="fa fa-hospital-o"></i> Rumah Sakit</a>
 			</li>
 			<li class="">
-				<a href="<?php echo base_url('physician'); ?>"><i class="fa fa-stethoscope"></i> Dokter</a>
+				<a href="<?php echo base_url('doctor'); ?>"><i class="fa fa-stethoscope"></i> Dokter</a>
+			</li>
+			<li class="">
+				<a href="<?php echo base_url('salesagent'); ?>"><i class="fa fa-male"></i> Agen Penjualan</a>
 			</li>
 			<li class="">
 				<a href="<?php echo base_url('patient'); ?>"><i class="fa fa-wheelchair"></i> Pasien</a>
@@ -54,9 +48,14 @@
 			<li class="">
 				<a href="<?php echo base_url('employee'); ?>"><i class="fa fa-medkit"></i> Instrumen</a>
 			</li>
-			<li class="">
-				<a href="<?php echo base_url('user'); ?>"><i class="fa fa-users"></i> User</a>
-			</li>
+			<?php if($auth_level>=7) { ?>
+				<li class="">
+					<a href="<?php echo base_url('employee'); ?>"><i class="fa fa-female"></i> Pegawai</a>
+				</li>
+				<li class="">
+					<a href="<?php echo base_url('user'); ?>"><i class="fa fa-users"></i> User</a>
+				</li>
+			<?php } ?>
 		</ul>
 	</li>
 	

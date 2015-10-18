@@ -2,9 +2,21 @@
  
 class Salesagent extends CI_Controller {
 	public function index() {
-		$this->grocery_crud->set_table('sales_agent');
-
-		$output = $this->grocery_crud->render();
+		$crud = new grocery_CRUD();
+		
+		$crud->where('is_sales_agent',1);
+		$crud->set_table('contact');
+		$crud->set_subject('Agen Penjualan');
+		$crud->columns('name','address','sales_agent_company','phone','email');
+		
+		$crud->fields('name','address','sales_agent_company','phone','email');
+		$crud->display_as('name','Nama')
+				->display_as('address','Alamat')
+				->display_as('sales_agent_company','Perusahaan')
+				->display_as('phone','Telpon')
+				->display_as('email','Email');
+		
+		$output = $crud->render();
 		
 		$output->page_title = 'Agen Penjualan';
 		
