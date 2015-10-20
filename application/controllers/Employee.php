@@ -10,11 +10,10 @@ class Employee extends MY_Controller {
 			$crud->set_subject('Pegawai');
 			$crud->columns('image','name','position','phone','email');
 
-			$crud->add_fields('image','name','nick_name','position','address','phone','gender','birthplace','birthdate','date_employed','email','is_employee','is_sales_agent','user_id');
-			$crud->edit_fields('image','name','nick_name','position','address','phone','gender','birthplace','birthdate','date_employed','date_resign','email','is_sales_agent','user_id');
+			$crud->add_fields('image','name','position','address','phone','gender','birthplace','birthdate','date_employed','email','is_employee','is_medical_assistant','is_sales_agent','user_id');
+			$crud->edit_fields('image','name','position','address','phone','gender','birthplace','birthdate','date_employed','date_resign','email','is_medical_assistant','is_sales_agent','user_id');
 			$crud->display_as('image','Foto')
 					->display_as('name','Nama')
-					->display_as('nick_name','Panggilan')
 					->display_as('position','Jabatan')
 					->display_as('address','Alamat')
 					->display_as('phone','Telpon')
@@ -23,11 +22,13 @@ class Employee extends MY_Controller {
 					->display_as('date_employed','Mulai bekerja')
 					->display_as('date_resign','Berhenti bekerja')
 					->display_as('email','Email')
+					->display_as('is_medical_assistant','Tenaga ahli medis')
 					->display_as('is_sales_agent','Agen Penjualan')
 					->display_as('user_id','User');
 
 			$crud->required_fields('name','phone');
 			
+			$crud->callback_field('is_medical_assistant',array($this,'is_medical_assistant_field_callback'));
 			$crud->callback_field('is_sales_agent',array($this,'is_sales_agent_field_callback'));
 			
 			$crud->field_type('is_employee', 'hidden', 1);
@@ -42,6 +43,19 @@ class Employee extends MY_Controller {
 
 			$this->load->view('template/default/main',$output);
 		}
+	}
+	
+	public function is_medical_assistant_field_callback($value) {
+		$data = array(
+			'name'=>'is_medical_assistant',
+			'id'=>'field-is_medical_assistant',
+		);
+		$component = form_radio($data,1,$value).form_label('Ya','field-is_medical_assistant');
+		
+		$data['id'] = 'field-is_not_medical_assistant';
+		$data['style'] = 'margin-left:20px;';
+		$component .= form_radio($data,0,$value!=1).form_label('Tidak','field-is_not_medical_assistant');
+		return $component;
 	}
 	
 	public function is_sales_agent_field_callback($value) {

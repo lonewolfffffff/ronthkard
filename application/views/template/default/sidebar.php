@@ -28,6 +28,28 @@
 </ul>
 <ul class="nav nav-sidebar">
 	<li class="">
+		<a href="<?php echo base_url('product'); ?>"><i class="fa fa-align-justify"></i> Inventory</a>
+		<ul class="nav sub-menu">
+			<li class="">
+				<a href="<?php echo base_url('inventory/product'); ?>"><i class="fa fa-cube"></i> Produk</a>
+			</li>
+			<li class="">
+				<a href="<?php echo base_url('inventory/productset'); ?>"><i class="fa fa-cubes"></i> Set Produk</a>
+			</li>
+			<li class="">
+				<a href="<?php echo base_url('inventory/instrument'); ?>"><i class="fa fa-gavel"></i> Instrumen</a>
+			</li>
+			<li class="">
+				<a href="<?php echo base_url('inventory/instrumentset'); ?>"><i class="fa fa-scissors"></i> Set Instrumen</a>
+			</li>
+			<li class="">
+				<a href="<?php echo base_url('inventory/category'); ?>"><i class="fa fa-cogs"></i> Kategori Produk</a>
+			</li>
+		</ul>
+	</li>
+</ul>
+<ul class="nav nav-sidebar">
+	<li class="">
 		<a href="<?php echo base_url('product'); ?>"><i class="fa fa-database"></i> Katalog</a>
 		<ul class="nav sub-menu">
 			<li class="">
@@ -35,6 +57,9 @@
 			</li>
 			<li class="">
 				<a href="<?php echo base_url('doctor'); ?>"><i class="fa fa-stethoscope"></i> Dokter</a>
+			</li>
+			<li class="">
+				<a href="<?php echo base_url('medicalassistant'); ?>"><i class="fa fa-user-secret"></i> Tenaga Ahli Medis</a>
 			</li>
 			<li class="">
 				<a href="<?php echo base_url('salesagent'); ?>"><i class="fa fa-male"></i> Agen Penjualan</a>

@@ -22,6 +22,7 @@ class Hospital extends MY_Controller {
 			$crud->required_fields('name','hospital_contact_person','phone');
 			$crud->field_type('is_hospital', 'hidden', 1);
 			$crud->field_type('is_customer', 'hidden', 1);
+			
 			$output = $crud->render();
 			$output->page_title = 'Rumah Sakit';
 
