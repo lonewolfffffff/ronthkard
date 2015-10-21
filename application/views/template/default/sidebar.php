@@ -70,9 +70,6 @@
 			<li class="">
 				<a href="<?php echo base_url('vendor'); ?>"><i class="fa fa-truck"></i> Supplier</a>
 			</li>
-			<li class="">
-				<a href="<?php echo base_url('employee'); ?>"><i class="fa fa-medkit"></i> Instrumen</a>
-			</li>
 			<?php if($auth_level>=7) { ?>
 				<li class="">
 					<a href="<?php echo base_url('employee'); ?>"><i class="fa fa-female"></i> Pegawai</a>

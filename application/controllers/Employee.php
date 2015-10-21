@@ -31,6 +31,7 @@ class Employee extends MY_Controller {
 			$crud->callback_field('is_medical_assistant',array($this,'is_medical_assistant_field_callback'));
 			$crud->callback_field('is_sales_agent',array($this,'is_sales_agent_field_callback'));
 			
+			$crud->field_type('position', 'dropdown', array(4=>'Sales',5=>'Inventory',6=>'Finance & Accounting',7=>'Manager'));
 			$crud->field_type('is_employee', 'hidden', 1);
 			
 			$crud->set_field_upload('image','assets/uploads/files');

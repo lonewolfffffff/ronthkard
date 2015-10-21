@@ -10,7 +10,11 @@ class Medicalassistant extends MY_Controller {
 			$crud->set_subject('Tenaga Ahli Medis');
 			$crud->columns('name','address','phone','email');
 
-			$crud->fields('name','address','phone','email');
+			$crud->add_fields('name','address','phone','email','is_medical_assistant');
+			$crud->field_type('is_medical_assistant', 'hidden', 1);
+			$crud->edit_fields('name','address','phone','email');
+			$crud->required_fields('name','phone');
+			
 			$crud->display_as('name','Nama')
 					->display_as('address','Alamat')
 					->display_as('phone','Telpon')

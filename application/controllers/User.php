@@ -31,61 +31,63 @@ class User extends MY_Controller {
      * you will be redirected back to this method.
      */
 	public function index() {
-		$crud = new grocery_CRUD();
-		
-		if(!$this->verify_role('admin')) {
-			$crud->where('user_name!=','admin');
-			$access_level = array(4=>'Sales',5=>'Inventory',6=>'Finance & Accounting');
+		if($this->require_min_level(1)) {
+			$crud = new grocery_CRUD();
+			
+			if($this->auth_role=='admin') {
+				$access_level = array(4=>'Sales',5=>'Inventory',6=>'Finance & Accounting',7=>'Manager',8=>'Business Owner',9=>'Admin');
+			}
+			else {
+				$crud->where('user_name!=','admin');
+				$access_level = array(4=>'Sales',5=>'Inventory',6=>'Finance & Accounting',7=>'Manager');
+			}
+
+			$crud->set_table('users');
+			$crud->set_subject('User');
+			$crud->columns('user_name','user_level','user_email','user_last_login');
+			$crud->fields('user_name','user_pass','user_email','user_level');
+			$crud->display_as('user_name','Username')
+					->display_as('user_email','Email')
+					->display_as('user_last_login','Terakhir login')
+					->display_as('user_pass','Password')
+					->display_as('user_level','Level');
+
+			$crud->required_fields('user_name','user_pass','user_email','user_level');
+			$crud->field_type('user_pass', 'password');
+			$crud->field_type('user_level','dropdown',$access_level);
+
+			$validation_rules = array(
+				array(
+					'field' => 'user_name',
+					'label' => 'Username',
+					'rules' => 'max_length[12]'
+				),
+				array(
+					'field' => 'user_pass',
+					'label' => 'Password',
+					'rules' => 'trim|required',
+				),
+				array(
+					'field' => 'user_email',
+					'label' => 'Email',
+					'rules' => 'required|valid_email'
+				),
+				array(
+					'field' => 'user_level',
+					'label' => 'Level',
+					'rules' => 'required|integer|in_list[4,5,6]'
+				)
+			);
+
+			$crud->set_rules($validation_rules);
+
+			$crud->callback_insert(array($this,'create_user_callback'));
+			$crud->callback_update(array($this,'update_user_callback'));
+
+			$output = $crud->render();
+			$output->page_title = 'User';
+			$this->load->view('template/default/main',$output);
 		}
-		else {
-			$access_level = array(4=>'Sales',5=>'Inventory',6=>'Finance & Accounting',7=>'Manager',8=>'Business Owner',9=>'Admin');
-		}
-		
-		$crud->set_table('users');
-		$crud->set_subject('User');
-		$crud->columns('user_name','user_level','user_email','user_last_login');
-		$crud->fields('user_name','user_pass','user_email','user_level');
-		$crud->display_as('user_name','Username')
-				->display_as('user_email','Email')
-				->display_as('user_last_login','Terakhir login')
-				->display_as('user_pass','Password')
-				->display_as('user_level','Level');
-		
-		$crud->required_fields('user_name','user_pass','user_email','user_level');
-		$crud->field_type('user_pass', 'password');
-		$crud->field_type('user_level','dropdown',$access_level);
-		
-		$validation_rules = array(
-			array(
-				'field' => 'user_name',
-				'label' => 'Username',
-				'rules' => 'max_length[12]'
-			),
-			array(
-				'field' => 'user_pass',
-				'label' => 'Password',
-				'rules' => 'trim|required',
-			),
-			array(
-				'field' => 'user_email',
-				'label' => 'Email',
-				'rules' => 'required|valid_email'
-			),
-			array(
-				'field' => 'user_level',
-				'label' => 'Level',
-				'rules' => 'required|integer|in_list[4,5,6]'
-			)
-		);
-		
-		$crud->set_rules($validation_rules);
-		
-		$crud->callback_insert(array($this,'create_user_callback'));
-		$crud->callback_update(array($this,'update_user_callback'));
-		
-		$output = $crud->render();
-		$output->page_title = 'User';
-		$this->load->view('template/default/main',$output);
 	}
 	
 	function create_user_callback($post_array, $primary_key = null) {

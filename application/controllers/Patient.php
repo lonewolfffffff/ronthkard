@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Patient extends CI_Controller {
+class Patient extends MY_Controller {
 	public function index() {
 		if($this->require_min_level(1)) {
 			$crud = new grocery_CRUD();
@@ -10,7 +10,11 @@ class Patient extends CI_Controller {
 			$crud->set_subject('Pasien');
 			$crud->columns('name','address','birthdate','phone','email');
 
-			$crud->fields('name','address','birthdate','phone','email');
+			$crud->add_fields('name','address','birthdate','phone','email','is_patient');
+			$crud->field_type('is_patient', 'hidden', 1);
+			$crud->edit_fields('name','address','birthdate','phone','email');
+			$crud->required_fields('name','birthdate','phone');
+			
 			$crud->display_as('name','Nama')
 					->display_as('address','Alamat')
 					->display_as('birthdate','Tanggal Lahir')
@@ -19,7 +23,7 @@ class Patient extends CI_Controller {
 
 			$output = $crud->render();
 
-			$output->page_title = 'Tenaga Ahli Medis';
+			$output->page_title = 'Pasien';
 
 			$this->load->view('template/default/main',$output);
 		}

@@ -10,15 +10,17 @@ class Salesagent extends MY_Controller {
 			$crud->set_subject('Agen Penjualan');
 			$crud->columns('name','address','sales_agent_company','phone','email');
 
-			$crud->fields('name','address','sales_agent_company','phone','email');
+			$crud->add_fields('name','address','sales_agent_company','phone','email','is_sales_agent');
+			$crud->field_type('is_sales_agent', 'hidden', 1);
+			$crud->edit_fields('name','address','sales_agent_company','phone','email');
+			$crud->required_fields('name','phone');
+			
 			$crud->display_as('name','Nama')
 					->display_as('address','Alamat')
 					->display_as('sales_agent_company','Perusahaan')
 					->display_as('phone','Telpon')
 					->display_as('email','Email');
 
-			$crud->unset_export();
-			$crud->unset_print();
 			$output = $crud->render();
 
 			$output->page_title = 'Agen Penjualan';
